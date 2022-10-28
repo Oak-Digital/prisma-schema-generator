@@ -1,0 +1,44 @@
+{
+    "rules": {
+        "check-file/filename-naming-convention": [
+            "warn",
+            {
+                "components/**/*.{js,jsx,ts,tsx}": "(index)|(([A-Z][a-z0-9]*)+)"
+            }
+        ],
+        "check-file/folder-naming-convention": [
+            "warn",
+            {
+                "components/**/": "PASCAL_CASE",
+                "lib/**/": "KEBAB_CASE",
+                "pages/**/": "KEBAB_CASE"
+            }
+        ],
+        "semi": ["error", "always"],
+        "quotes": ["warn", "single"],
+        "eqeqeq": ["error", "always"],
+        "default-case-last": ["error"],
+        "no-lonely-if": ["error"],
+        "no-magic-numbers": [
+            "warn",
+            {
+                "ignoreArrayIndexes": true,
+                "ignore": [-1, 0, 1]
+            }
+        ],
+        "no-return-assign": ["error", "always"],
+        "no-return-await": ["error"],
+        "no-var": ["error"],
+        "no-cond-assign": ["error", "always"],
+        "react/display-name": "off"
+    },
+    "plugins": ["check-file"],
+    "extends": ["next", "prettier", "next/core-web-vitals"],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "jsx": true
+        },
+        "ecmaVersion": "latest",
+        "sourceType": "module"
+    }
+}
