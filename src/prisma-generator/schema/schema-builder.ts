@@ -50,7 +50,7 @@ export class SchemaBuilder {
                 console.warn(`Invalid block type: "${block.prefix}".`, block);
                 return '';
         }
-        blockString += `}`;
+        blockString += '}';
         return blockString;
     }
 
@@ -101,8 +101,8 @@ export class SchemaBuilder {
             attribute.signature.forEach((signature) => {
                 attributeString += signature.value;
                 if (signature.type) attributeString += `: ${signature.type}`;
-                if (signature.optional) attributeString += `?`;
-                if (signature.list) attributeString += `[]`;
+                if (signature.optional) attributeString += '?';
+                if (signature.list) attributeString += '[]';
                 attributeString += ' ';
             });
             attributeString += ')';
