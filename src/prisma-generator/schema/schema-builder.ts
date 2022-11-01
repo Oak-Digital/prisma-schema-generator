@@ -57,13 +57,13 @@ export class SchemaBuilder {
     private renderDataSourceMembers(dataSource: DataSourceBlock) {
         // TODO: configs
 
-        return `provider = "${dataSource.provider}"\nurl = "${dataSource.url}\n"`;
+        return `\tprovider = "${dataSource.provider}"\n\turl = "${dataSource.url}"\n`;
     }
 
     private renderGeneratorMembers(generator: GeneratorBlock) {
         // TODO: configs
 
-        return `provider = "${generator.provider}"\n`;
+        return `\tprovider = "${generator.provider}"\n`;
     }
 
     private renderModelMembers(model: ModelBlock) {
@@ -98,13 +98,18 @@ export class SchemaBuilder {
 
         if (attribute.signature) {
             attributeString += '(';
+
+            const signatures = [];
             attribute.signature.forEach((signature) => {
-                attributeString += signature.value;
-                if (signature.type) attributeString += `: ${signature.type}`;
-                if (signature.optional) attributeString += '?';
-                if (signature.list) attributeString += '[]';
-                attributeString += ' ';
+                let signatureString = signature.value;
+                if (signature.type) signatureString += `: ${signature.type}`;
+                if (signature.optional) signatureString += '?';
+                if (signature.list) signatureString += '[]';
+
+                signatures.push(signatureString);
             });
+
+            attributeString += signatures.join(',');
             attributeString += ')';
         }
 
@@ -113,9 +118,11 @@ export class SchemaBuilder {
 
     private renderEnumMembers(enumblock: EnumBlock) {
         return (
+            '\t' +
             enumblock.members.reduce((aggr, el) => {
-                return `${aggr}\n${el}`;
-            }) + '\n'
+                return `${aggr}\n\t${el}`;
+            }) +
+            '\n'
         );
     }
 }
