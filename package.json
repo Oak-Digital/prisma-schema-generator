@@ -1,5 +1,5 @@
 {
-    "name": "dawa-shema-generator",
+    "name": "dawa-schema-generator",
     "version": "0.0.1",
     "description": "",
     "author": "",
@@ -26,6 +26,7 @@
         "@nestjs/core": "^9.0.0",
         "@nestjs/platform-express": "^9.0.0",
         "nest-commander": "^3.1.0",
+        "prisma": "^4.5.0",
         "reflect-metadata": "^0.1.13",
         "rimraf": "^3.0.2",
         "rxjs": "^7.2.0"
