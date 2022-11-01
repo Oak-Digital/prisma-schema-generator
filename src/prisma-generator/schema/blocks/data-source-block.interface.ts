@@ -1,4 +1,4 @@
-import { EnvValue } from './env-value.interface';
+import { Block } from './block.interface';
 
 export type ConnectorType =
     | 'mysql'
@@ -9,13 +9,12 @@ export type ConnectorType =
     | 'jdbc:sqlserver'
     | 'cockroachdb';
 
-export interface DataSource {
-    name: string;
+export interface DataSourceBlock extends Block {
     prefix: 'datasource';
-    activeProvider: ConnectorType;
+    // activeProvider?: ConnectorType;
     provider: ConnectorType;
-    url: EnvValue;
-    config: { [key: string]: string };
+    url: string;
+    config?: { [key: string]: string };
     // shadowDatabaseUrl?: string;
     // relationMode?: string;
     // extensions?: string[];

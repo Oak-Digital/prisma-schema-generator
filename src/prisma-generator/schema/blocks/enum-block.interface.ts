@@ -1,6 +1,6 @@
 import { Block } from './block.interface';
 
-export interface Enum extends Block {
+export interface EnumBlock extends Block {
     prefix: 'enum';
     members: string[];
 }

@@ -1,13 +1,7 @@
 import { Block } from './block.interface';
 
-export enum GeneratorProvider {
-    prisma_client = 'prisma-client-js',
-}
-
-export enum GeneratorEngineType {
-    library = 'library',
-    binary = 'binary',
-}
+export type GeneratorProvider = 'prisma-client-js';
+export type GeneratorEngineType = 'library' | 'binary';
 
 export enum GeneratorBinaryTargets {
     native = 'native', // Default
@@ -25,7 +19,7 @@ export enum GeneratorBinaryTargets {
     arm64_3_0 = 'linux-arm64-openssl-3.0.x',
 }
 
-export interface Generator extends Block {
+export interface GeneratorBlock extends Block {
     prefix: 'generator';
     provider: GeneratorProvider | string;
     output?: string;

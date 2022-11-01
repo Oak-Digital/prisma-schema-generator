@@ -4,3 +4,5 @@ database
 dist
 
 .env
+
+.direnv
