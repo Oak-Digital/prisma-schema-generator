@@ -14,7 +14,7 @@ export class SchemaTester {
 
     testRender() {
         this.addBlocks();
-        return this.builder.renderSchema().join('\n');
+        return this.builder.renderSchema().join('\n\n');
     }
 
     addBlocks() {
@@ -106,19 +106,24 @@ export class SchemaTester {
                     attributes: [
                         {
                             type: ScalarAttributeType.default,
+                            signature: [
+                                {
+                                    value: 'USER',
+                                },
+                            ],
                         },
                     ],
                 },
                 {
                     name: 'posts',
                     type: 'Post',
-                    modifiers: [],
+                    modifiers: [ScalarTypeModifier.List],
                 },
-                {
-                    name: 'profile',
-                    type: 'Profile',
-                    modifiers: [],
-                },
+                // {
+                //     name: 'profile',
+                //     type: 'Profile',
+                //     modifiers: [],
+                // },
             ],
         };
     }
