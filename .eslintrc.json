@@ -33,7 +33,7 @@
         "react/display-name": "off"
     },
     "plugins": ["check-file"],
-    "extends": ["next", "prettier", "next/core-web-vitals"],
+    "extends": ["prettier", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
