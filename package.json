@@ -1,10 +1,10 @@
 {
     "name": "prisma-schema-generator",
-    "version": "0.0.1",
+    "version": "0.1.1",
     "description": "",
-    "author": "",
+    "author": "David Koch Gregersen <david.koch@oakdigital.dk>",
     "private": true,
-    "license": "UNLICENSED",
+    "license": "MIT",
     "scripts": {
         "prebuild": "rimraf dist",
         "build": "nest build",
