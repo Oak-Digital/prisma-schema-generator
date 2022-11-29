@@ -8,5 +8,5 @@ export enum BlockAttributeType {
 
 export interface BlockAttribute {
     type: BlockAttributeType;
-    signature?: { key: string; type: string; optional: boolean; list: boolean }[];
+    signature?: { value: string }[];
 }

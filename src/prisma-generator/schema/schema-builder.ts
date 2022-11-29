@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { BlockAttribute } from './attributes/block-attribute.interface';
 import { ScalarAttribute } from './attributes/scalar-attribute.interface';
 import { Block } from './blocks/block.interface';
 import { DataSourceBlock } from './blocks/data-source-block.interface';
@@ -71,6 +72,9 @@ export class SchemaBuilder {
         model.fields.forEach((field) => {
             modelString += this.renderScalar(field);
         });
+        model.attributes?.forEach((attribute) => {
+            modelString += this.renderBlockAttribute(attribute);
+        });
         return modelString;
     }
 
@@ -83,7 +87,9 @@ export class SchemaBuilder {
             if (scalar.modifiers.includes(ScalarTypeModifier.Optional)) type += '?';
         }
 
-        let fieldString = `\t${scalar.name}\t${type}\t`;
+        let fieldString = '';
+        if (scalar.comment) fieldString += `\t/// ${scalar.comment}\n`;
+        fieldString += `\t${scalar.name}\t${type}\t`;
 
         scalar.attributes?.forEach((attr) => {
             fieldString += ' ' + this.renderFieldAttribute(attr);
@@ -91,6 +97,24 @@ export class SchemaBuilder {
         fieldString += '\n';
 
         return fieldString;
+    }
+
+    private renderBlockAttribute(attribute: BlockAttribute) {
+        let attributeString = `\t${attribute.type}`;
+
+        if (attribute.signature) {
+            attributeString += '(';
+
+            const signatures = [];
+            attribute.signature.forEach((signature) => {
+                signatures.push(signature.value);
+            });
+
+            attributeString += signatures.join(',');
+            attributeString += ')';
+        }
+
+        return attributeString + '\n';
     }
 
     private renderFieldAttribute(attribute: ScalarAttribute) {
@@ -116,11 +140,11 @@ export class SchemaBuilder {
         return attributeString;
     }
 
-    private renderEnumMembers(enumblock: EnumBlock) {
+    private renderEnumMembers(enumBlock: EnumBlock) {
         return (
             '\t' +
-            enumblock.members.reduce((aggr, el) => {
-                return `${aggr}\n\t${el}`;
+            enumBlock.members.reduce((aggregator, element) => {
+                return `${aggregator}\n\t${element}`;
             }) +
             '\n'
         );

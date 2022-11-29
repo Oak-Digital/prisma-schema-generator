@@ -25,4 +25,5 @@ export interface Scalar extends Field {
     type: ScalarType | string;
     modifiers?: ScalarTypeModifier[];
     attributes?: ScalarAttribute[];
+    comment?: string;
 }
