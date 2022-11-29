@@ -1,5 +1,5 @@
 {
-    "name": "dawa-schema-generator",
+    "name": "prisma-schema-generator",
     "version": "0.0.1",
     "description": "",
     "author": "",
@@ -10,6 +10,7 @@
         "build": "nest build",
         "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
         "start": "nest start",
+        "generate": "node dist/main --",
         "repl": "nest start --watch --entryFile repl",
         "start:dev": "nest start --watch",
         "start:debug": "nest start --debug --watch",

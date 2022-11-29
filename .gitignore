@@ -3,6 +3,7 @@ node_modules
 database
 dist
 
-.env
+.out/
 
+.env
 .direnv
